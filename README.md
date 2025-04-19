@@ -16,6 +16,6 @@ The choice of dataset, model architecture, and supporting tools is subject to ch
 
 
 
-## License
+## ✒️ License
 
 License to be determined. This project is currently in development and licensing details may change.
