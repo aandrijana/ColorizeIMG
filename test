@@ -1,0 +1,20 @@
+import numpy as np
+import cv2
+
+def resize_l_ab(l_array, ab_array, target_shape=(128, 128)):
+    resized_l = []
+    resized_ab = []
+
+    for l_img, ab_img in zip(l_array, ab_array):
+        # Resize L channel
+        l_resized = cv2.resize(l_img, target_shape, interpolation=cv2.INTER_AREA)
+
+        # Resize A and B channels separately
+        a_resized = cv2.resize(ab_img[:, :, 0], target_shape, interpolation=cv2.INTER_AREA)
+        b_resized = cv2.resize(ab_img[:, :, 1], target_shape, interpolation=cv2.INTER_AREA)
+        ab_resized = np.stack((a_resized, b_resized), axis=-1)
+
+        resized_l.append(l_resized)
+        resized_ab.append(ab_resized)
+
+    return np.array(resized_l), np.array(resized_ab)
